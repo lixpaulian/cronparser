@@ -38,15 +38,15 @@
 
 #include "cronparser.h"
 
+#define TEST_CRON_DEBUG false
+
 using namespace os;
 
 static bool
-date_to_struct (struct tm *t, char *pszDate);
+date_to_struct (struct tm* t, char* pszDate);
 
 static time_t
-date_to_long (char *pszDate);
-
-
+date_to_long (char* pszDate);
 
 struct cron_pairs
 {
@@ -69,56 +69,70 @@ struct cron_pairs cron_test_data[] =
     { "20040103T224502", "L30-59/15,0-29/14 22", true },
     { "20040103T221103", "L30-59/15,0-29/14 23", false },
 
-    { "20040103T224500", "Z */15;*/14", true},
-    { "20040103T221415", "Z */15;*/14", true},
+    { "20040103T224500", "Z */15;*/14", true },
+    { "20040103T221415", "Z */15;*/14", true },
     { "20040103T223045", "Z */15 ; */14 ", true },
-    { "20040103T222900", "Z */15;*/14", false},
-    { "20040103T224200", "Z */15;*/14 22", true},
+    { "20040103T222900", "Z */15;*/14", false },
+    { "20040103T224200", "Z */15;*/14 22", true },
 
     { "20041231T232200", "7-37/15", true },
     { "20041231T235900", "7-37/15 ; ", false },
     { "20041231T233715", "7-37/15 ; ", true },
 
-    { nullptr, nullptr, false },
-  };
+    { nullptr, nullptr, false }, };
+
+
 /**
  * @brief  This is a test function that exercises the cron parser.
  */
 void
 test_cron (void)
 {
-  cronparser my_cron {};
+  cronparser my_cron
+    { };
 
   for (struct cron_pairs* p = cron_test_data; p->date != nullptr; p++)
     {
-      uint32_t timer = (uint32_t) (rtos::hrclock.now () / (SystemCoreClock / 1000000));
-      bool result = my_cron.cron_check (date_to_long ((char *) p->date), (char *) p->cron_def);
-      timer = (uint32_t) (rtos::hrclock.now () / (SystemCoreClock / 1000000)) - timer;
+      uint32_t timer = (uint32_t) (rtos::hrclock.now ()
+          / (SystemCoreClock / 1000000));
+      bool result = my_cron.cron_check (date_to_long ((char *) p->date),
+                                        (char *) p->cron_def);
+      timer = (uint32_t) (rtos::hrclock.now () / (SystemCoreClock / 1000000))
+          - timer;
 
       trace::printf (
-          "date: %s, cron string: \"%s\", match %s, test %s (%u us)\n", p->date,  p->cron_def,
-          result ?  "yes" : "no", result == p->result ? "OK" : "failed", timer);
+          "date: %s, cron string: \"%s\", match %s, test %s (%u us)\n", p->date,
+          p->cron_def, result ? "yes" : "no",
+          result == p->result ? "OK" : "failed", timer);
     }
 }
 
 static bool
-date_to_struct (struct tm *t, char *pszDate)
+date_to_struct (struct tm* t, char* pszDate)
 {
   char buf[5];
   int i;
 
   if (t == (struct tm *) NULL)
-    return false;
+    {
+      return false;
+    }
 
   strncpy (buf, pszDate, 4);
   buf[4] = '\0';
   i = atoi (buf);
   if (i <= 1900)
-    t->tm_year = 1; /* too old to matter */
+    {
+      t->tm_year = 1; /* too old to matter */
+    }
   else if (i > 2046)
-    t->tm_year = 2046 - 1900; /* too futuristic to matter */
+    {
+      t->tm_year = 2046 - 1900; // too futuristic to matter
+    }
   else
-    t->tm_year = i - 1900;
+    {
+      t->tm_year = i - 1900;
+    }
 
   strncpy (buf, pszDate + 4, 2);
   buf[2] = '\0';
@@ -139,33 +153,36 @@ date_to_struct (struct tm *t, char *pszDate)
   t->tm_wday = 0;
 
   t->tm_yday = 0;
-  t->tm_isdst = -1;     // let mktime guess if DST is active or not (see man mktime)
+  t->tm_isdst = -1; // let mktime guess if DST is active or not (see man mktime)
 
-#if 0
+#if TEST_CRON_DEBUG == true
   trace::printf ("date_to_struct %04d%02d%02dT%02d%02d%02d", t->tm_year,
-      t->tm_mon, t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec);
+                 t->tm_mon, t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec);
   trace::printf (" %s", asctime (t));
 #endif
 
   return true; /* TODO: check errors */
 }
 
-
 static time_t
-date_to_long (char *pszDate)
+date_to_long (char* pszDate)
 {
   struct tm tm;
   time_t t;
 
   if (!date_to_struct (&tm, pszDate))
-    return -1;
+    {
+      return -1;
+    }
 
   if (tm.tm_year < 70)
-    return 0;
+    {
+      return 0;
+    }
 
   t = mktime (&tm);
 
-#if 0
+#if TEST_CRON_DEBUG == true
   trace::printf ("date_to_long: %s %s", pszDate, ctime (&t));
 #endif
 

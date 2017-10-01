@@ -103,8 +103,10 @@ cronparser::cron_check (time_t time_in, char* ps)
   if (ps == nullptr)
     return false;
 
-  while (isspace (*(uint8_t *) ps))
-    ps++;
+  while (isspace (*(uint8_t*) ps))
+    {
+      ps++;
+    }
 
   if (*ps == 'Z')
     {
@@ -122,9 +124,13 @@ cronparser::cron_check (time_t time_in, char* ps)
 
   // split time into components
   if (local)
-    tm = localtime (&time_in);
+    {
+      tm = localtime (&time_in);
+    }
   else
-    tm = gmtime (&time_in);
+    {
+      tm = gmtime (&time_in);
+    }
 
   tm->tm_sec = 0;
 
@@ -142,7 +148,9 @@ cronparser::cron_check (time_t time_in, char* ps)
   if (cron_minutes_[tm->tm_min] && cron_hours_[tm->tm_hour]
       && cron_mdays_[tm->tm_mday] && cron_months_[tm->tm_mon + 1]
       && cron_wdays_[tm->tm_wday])
-    result = true;
+    {
+      result = true;
+    }
 
   return result;
 }
@@ -160,9 +168,13 @@ cronparser::cron_eol (char* pc)
   c = *pc;
 
   if (c == ';' || c == '\0')
-    return true;
+    {
+      return true;
+    }
   else
-    return false;
+    {
+      return false;
+    }
 }
 
 /**
@@ -181,18 +193,26 @@ cronparser::cron_parse_entry (char* ps)
   ps = cron_parse_list (ps, cron_wdays_, 0, 6); // 0-6 not 0-7 as in crontab
 
   if (ps == nullptr)
-    return ps;
+    {
+      return ps;
+    }
 
   // skip to end of line, may be delimiter or end of string
   while (!cron_eol (ps))
-    ++ps;
+    {
+      ++ps;
+    }
 
   // was it delimiter?
   if (*ps == ';')
-    ps++;       // skip it
+    {
+      ps++;       // skip it
+    }
 
-  while (isspace (*(uint8_t *) ps))
-    ps++;
+  while (isspace (*(uint8_t*) ps))
+    {
+      ps++;
+    }
 
   return ps;
 }
@@ -213,14 +233,18 @@ cronparser::cron_parse_list (char* ps, char* pbuf, unsigned char min,
   unsigned char i;
 
   if (ps == nullptr)
-    return ps;
+    {
+      return ps;
+    }
 
 #if DEBUG_CRON_PARSER == true
   trace::printf("cron_parse_list() '%s' min=%d, max=%d\n", ps, min, max);
 #endif
 
-  while (isspace (*(uint8_t *) ps))
-    ps++;       // skip over leading spaces
+  while (isspace (*(uint8_t*) ps))
+    {
+      ps++;       // skip over leading spaces
+    }
 
   if (!cron_eol (ps))
     {
@@ -228,10 +252,14 @@ cronparser::cron_parse_list (char* ps, char* pbuf, unsigned char min,
         {
           ps = cron_parse_element (ps, pbuf, min, max);
           if (ps == nullptr)
-            return ps;
+            {
+              return ps;
+            }
 
           if (*ps != ',')
-            break;
+            {
+              break;
+            }
           ps++;
         };
       if (!isspace (*(uint8_t *) ps) && !cron_eol (ps))
@@ -243,11 +271,14 @@ cronparser::cron_parse_list (char* ps, char* pbuf, unsigned char min,
     {
       // if none defined, same as '*'
       for (i = min; i <= max; ++i)
-        pbuf[i] = true;
+        {
+          pbuf[i] = true;
+        }
 #if DEBUG_CRON_PARSER == true
       trace::printf("cron_buf[%d-%d]=true\n", min, max);
 #endif
     }
+
   return ps;
 }
 
@@ -267,14 +298,18 @@ cronparser::cron_parse_element (char* ps, char* pbuf, unsigned char min,
   unsigned char i, from, to, step;
 
   if (ps == nullptr)
-    return ps;
+    {
+      return ps;
+    }
 
 #if DEBUG_CRON_PARSER == true
   trace::printf("cron_parse_element() '%s'\n", ps);
 #endif
 
-  while (isspace (*(uint8_t *) ps))
-    ++ps;
+  while (isspace (*(uint8_t*) ps))
+    {
+      ++ps;
+    }
 
   if (*ps == '*')
     {
@@ -303,7 +338,9 @@ cronparser::cron_parse_element (char* ps, char* pbuf, unsigned char min,
         {
           // single value, mark its position into buffer
           if (from > max)
-            from = max;
+            {
+              from = max;
+            }
 #if DEBUG_CRON_PARSER == true
           trace::printf("cron_buf[%d]=true\n", from);
 #endif
@@ -325,11 +362,17 @@ cronparser::cron_parse_element (char* ps, char* pbuf, unsigned char min,
             }
 
           if (from < min)
-            from = min; // 'from' cannot be lower than min
+            {
+              from = min; // 'from' cannot be lower than min
+            }
           if (to > max)
-            to = max;   //'to' cannot be higher than max
+            {
+              to = max;   //'to' cannot be higher than max
+            }
           if (from > max)
-            from = max; // but 'from' cannot be higher than max too
+            {
+              from = max; // but 'from' cannot be higher than max too
+            }
 
           for (i = from; i <= to; i += step)
             {
@@ -363,7 +406,7 @@ cronparser::cron_parse_number (char* ps, unsigned char* pn)
 {
   unsigned char n;
 
-  for (n = 0; isdigit (*(uint8_t *) ps); ++ps)
+  for (n = 0; isdigit (*(uint8_t*) ps); ++ps)
     {
       n *= 10;
       n += (*ps - '0'); // parse and convert to number
@@ -374,7 +417,9 @@ cronparser::cron_parse_number (char* ps, unsigned char* pn)
 #endif
 
   if (pn != nullptr)
-    *pn = n;    // store result
+    {
+      *pn = n;    // store result
+    }
 
   return ps;
 }
