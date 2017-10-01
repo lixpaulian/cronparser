@@ -28,5 +28,5 @@ The library is provided as an XPACK and can be installed in an Eclipse based pro
 The library dependends very lightly on the __trace__ functionality found in the uOS++ package (https://github.com/micro-os-plus/micro-os-plus-iii), but this can be easily replaced.
 
 ## Tests
-A separate directory `test` is included that contains a short test program which iterates a list of dates and cron strings to test for matches. You can freely add other dates/cron strings pairs in the table.
+A separate directory `test` is included that contains a short test program which iterates a list of dates and cron strings to test for matches. You can freely add other dates/cron string pairs in the table.
 
