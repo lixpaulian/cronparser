@@ -56,14 +56,13 @@ private:
   cron_parse_entry (char* ps);
 
   char*
-  cron_parse_list (char* ps, char* pbuf, unsigned char min, unsigned char max);
+  cron_parse_list (char* ps, char* pbuf, uint8_t min, uint8_t max);
 
   char*
-  cron_parse_element (char* ps, char* pbuf, unsigned char min,
-                      unsigned char max);
+  cron_parse_element (char* ps, char* pbuf, uint8_t min, uint8_t max);
 
   char*
-  cron_parse_number (char* ps, unsigned char* pn);
+  cron_parse_number (char* ps, uint8_t* pn);
 
   char cron_minutes_[60];       // 0 - 59
   char cron_hours_[24];         // 0 - 23

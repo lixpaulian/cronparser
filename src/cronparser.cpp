@@ -69,6 +69,7 @@
 #include <string.h>
 #include <time.h>
 #include <ctype.h>
+#include <stdint.h>
 #include <stdbool.h>
 #include <cmsis-plus/diag/trace.h>
 
@@ -227,10 +228,9 @@ cronparser::cron_parse_entry (char* ps)
  *      if at end.
  */
 char*
-cronparser::cron_parse_list (char* ps, char* pbuf, unsigned char min,
-                             unsigned char max)
+cronparser::cron_parse_list (char* ps, char* pbuf, uint8_t min, uint8_t max)
 {
-  unsigned char i;
+  uint8_t i;
 
   if (ps == nullptr)
     {
@@ -292,10 +292,9 @@ cronparser::cron_parse_list (char* ps, char* pbuf, unsigned char min,
  *      string.
  */
 char*
-cronparser::cron_parse_element (char* ps, char* pbuf, unsigned char min,
-                                unsigned char max)
+cronparser::cron_parse_element (char* ps, char* pbuf, uint8_t min, uint8_t max)
 {
-  unsigned char i, from, to, step;
+  uint8_t i, from, to, step;
 
   if (ps == nullptr)
     {
@@ -402,9 +401,9 @@ cronparser::cron_parse_element (char* ps, char* pbuf, unsigned char min,
  *      string.
  */
 char*
-cronparser::cron_parse_number (char* ps, unsigned char* pn)
+cronparser::cron_parse_number (char* ps, uint8_t* pn)
 {
-  unsigned char n;
+  uint8_t n;
 
   for (n = 0; isdigit (*(uint8_t*) ps); ++ps)
     {
