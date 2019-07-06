@@ -16,7 +16,7 @@ Regular UNIX syntax is accepted, i.e. a comma separated list of ranges. Ranges a
 Given a date (`time_t` format) and a cron string, the parser returns `true` if the two parameters match, or `false` otherwise.
  
 ## Version
-* 2.0 (1 Oct. 2017)
+* 2.1 (6 July 2019)
 
 ## License
 * MIT
