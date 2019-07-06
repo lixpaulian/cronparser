@@ -2,7 +2,7 @@
  * cronparser.cpp
  *
  *
- * (c) 2015, 2017 Lix N. Paulian (lix@paulian.net)
+ * (c) 2015, 2017, 2019 Lix N. Paulian (lix@paulian.net)
  *
  * Based on previous work by Liviu Ionescu (see copyright notice below).
  * The copyright notice from the original work applies also to the modified
@@ -11,7 +11,7 @@
  * Created on: 28 Mar 2015 (LNP)
  * Moved to C++: 1 Oct 2017 (LNP)
  *
- * Version 2.0
+ * Version 2.1
  *
  */
 
@@ -101,8 +101,10 @@ cronparser::cron_check (time_t time_in, char* ps)
   int local;
   int result = false;
 
-  if (ps == nullptr)
-    return false;
+  if (ps == nullptr || *ps == '\0')
+    {
+      return false;   // cron string is either null, or empty
+    }
 
   while (isspace (*(uint8_t*) ps))
     {
