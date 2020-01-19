@@ -1,6 +1,6 @@
 {
   "name": "@lix/cronparser",
-  "version": "2.1",
+  "version": "2.1.0",
   "description": "This is a simple implementation of a `cron` parser",
   "author": {
     "name": "Lix N. Paulian",
