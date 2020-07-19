@@ -9,14 +9,14 @@ The other fields are:
 * hour (0-23)
 * day of month (1-31)
 * month (1-12)
-* day of week (0-6, 0=Sunday)
+* day of week (0-7, 0 or 7 is Sunday)
  
 Regular UNIX syntax is accepted, i.e. a comma separated list of ranges. Ranges accept step definitions while '*' is considered a full range.
  
 Given a date (`time_t` format) and a cron string, the parser returns `true` if the two parameters match, or `false` otherwise.
  
 ## Version
-* 2.1.0 (6 July 2019)
+* 2.2.0 (19 July 2020)
 
 ## License
 * MIT
