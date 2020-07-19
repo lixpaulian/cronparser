@@ -2,7 +2,7 @@
  * cronparser.cpp
  *
  *
- * (c) 2015, 2017, 2019 Lix N. Paulian (lix@paulian.net)
+ * (c) 2015, 2017, 2019, 2020 Lix N. Paulian (lix@paulian.net)
  *
  * Based on previous work by Liviu Ionescu (see copyright notice below).
  * The copyright notice from the original work applies also to the modified
@@ -11,7 +11,7 @@
  * Created on: 28 Mar 2015 (LNP)
  * Moved to C++: 1 Oct 2017 (LNP)
  *
- * Version 2.1
+ * Version 2.2.0
  *
  */
 
@@ -56,7 +56,7 @@
  * - hour (0-23)
  * - day of month (1-31)
  * - month (1-12)
- * - day of week (0-6, 0=Sunday)
+ * - day of week (0-7, 0 or 7 is Sunday)
  *
  * Regular UNIX syntax is accepted, i.e. a comma separated list of ranges.
  * Ranges accept step definition. '*' is considered a full range.
@@ -147,6 +147,12 @@ cronparser::cron_check (time_t time_in, char* ps)
   // iterate through all components
   while ((ps = cron_parse_entry (ps)) != nullptr && *ps != 0)
     ;
+
+  // check for Sunday as "7"
+  if (cron_wdays_[7])
+    {
+      cron_wdays_[0] = true;
+    }
 
   if (cron_minutes_[tm->tm_min] && cron_hours_[tm->tm_hour]
       && cron_mdays_[tm->tm_mday] && cron_months_[tm->tm_mon + 1]

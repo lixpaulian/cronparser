@@ -1,7 +1,7 @@
 /*
  * cronparser.h
  *
- * Copyright (c) 2017, 2019 Lix N. Paulian (lix@paulian.net)
+ * Copyright (c) 2017, 2019, 2020 Lix N. Paulian (lix@paulian.net)
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -68,7 +68,7 @@ private:
   char cron_hours_[24];         // 0 - 23
   char cron_mdays_[31 + 1];     // 1 - 31
   char cron_months_[12 + 1];    // 1 - 12
-  char cron_wdays_[7];          // must be 0-6, not 0-7 as in crontab
+  char cron_wdays_[8];          // 0 - 7 (Sunday may be either 0 or 7)
 
 };
 
