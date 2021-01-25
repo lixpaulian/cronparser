@@ -22,10 +22,10 @@ Given a date (`time_t` format) and a cron string, the parser returns `true` if t
 * MIT
 
 ## Package
-The library is provided as an XPACK and can be installed in an Eclipse based project using the attached script (however, the `include` and `source` paths must be manually added to the project in Eclipse). For more details on XPACKs see https://github.com/xpacks. The installation script requires the helper scripts that can be found at https://github.com/xpacks/scripts.
+The library is provided as an xPack and can be installed in an Eclipse based project using the attached script (however, the `include` and `source` paths must be manually added to the project in Eclipse). For more details on xPacks see https://github.com/xpacks. The installation script requires the helper scripts that can be found at https://github.com/xpacks/scripts.
 
 ## Dependencies
-The library dependends very lightly on the __trace__ functionality found in the uOS++ package (https://github.com/micro-os-plus/micro-os-plus-iii), but this can be easily replaced.
+The library dependends very lightly on the __trace__ functionality found in the µOS++ package (https://github.com/micro-os-plus/micro-os-plus-iii), but this can be easily replaced.
 
 ## Tests
 A separate directory `test` is included that contains a short test program which iterates a list of dates and cron strings to test for matches. You can freely add other dates/cron string pairs in the table.
