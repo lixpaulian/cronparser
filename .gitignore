@@ -34,3 +34,4 @@
 # Other macos specific
 .DS_Store
 
+*.tgz
