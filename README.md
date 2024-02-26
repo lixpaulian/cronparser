@@ -20,12 +20,6 @@ Regular UNIX syntax is accepted, i.e. a comma separated list of ranges. Ranges a
  
 Given a date (`time_t` format) and a cron string, the parser returns `true` if the two parameters match, or `false` otherwise.
  
-## Version
-* 2.2.0 (19 July 2020)
-
-## License
-* MIT
-
 ## Package
 The class is provided as an **xPack** (for more details on xPacks see https://xpack.github.io). It can be installed in a project using either `xpm` or the attached script. Of course, it can be installed without using the xPacks tools, either by linking the class as a Git submodule or by copying it in your project, but then updating it later might be more difficult.
 
