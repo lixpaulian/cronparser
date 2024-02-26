@@ -1,8 +1,8 @@
-[![GitHub package.json version](https://img.shields.io/github/package-json/v/lixpaulian/cronparser)](https://github.com/lixpaulian/cronparser/blob/xpack/package.json)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/lixpaulian/cronparser)
 
 # cronparser
 
-This is a simple implementation of a `cron` parser. It is intended mainly for embedded applications, to schedule various events. It was originally developed in C by Liviu Ionescu.
+This is a simple implementation of a `cron` parser. It is intended mainly for embedded applications, to schedule various events. It was originally developed in **C** by Liviu Ionescu.
  
 The content of the input string is a ';' separated list of CRON definitions, like: `L30-59/15,0-29/14 1`. The first letter defines whether local (L) or UTC (Z) time is used, the default being local time.
  
@@ -28,7 +28,7 @@ The class is provided as an **xPack** (for more details on xPacks see https://xp
 
 Note that the xPacks project evolved with the time. Initially it was based on shell scripts, but the current version is based on a set of utilities, `xpm` and a JSON description file. You will still find the `xpacks-helper.sh` script in the `scripts` subdirectory, but it is not recommened as it is deprecated and will not be supported in the future. Instead use the procedure described below.
 
-To install the package using `xpm` you must make sure that you have already `nodejs` and `xpm` installed on your computer (see also [xPack install](https://xpack.github.io/install/)). Then, in your project directory issue the command
+To install the package using `xpm` you must make sure that you have already `nodejs` and `xpm` installed on your computer (see also [xPack install](https://xpack.github.io/install/)). Then, in your project directory issue the commands:
 
 ```sh
 cd my-project
