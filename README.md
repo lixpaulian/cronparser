@@ -1,4 +1,4 @@
-[![GitHub package.json version](https://img.shields.io/github/package-json/v/micro-os-plus/micro-os-plus-iii)](https://github.com/micro-os-plus/micro-os-plus-iii/blob/xpack/package.json)
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/lixpaulian/cronparser)](https://github.com/lixpaulian/cronparser/blob/xpack/package.json)
 
 # cronparser
 
