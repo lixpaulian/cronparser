@@ -1,6 +1,6 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/lixpaulian/cronparser)
 ![GitHub Tag](https://img.shields.io/github/v/tag/lixpaulian/cronparser)
-![GitHub License](https://img.shields.io/github/package-json/license/lixpaulian/cronparser)
+![GitHub License](https://img.shields.io/github/license/lixpaulian/cronparser)
 
 
 # cronparser
