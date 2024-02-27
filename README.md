@@ -36,7 +36,7 @@ xpm install github:lixpaulian/cronparser#v2.2.0 --save-dev --copy
 Note: Without `--copy`, the default is to create a link to a read-only instance of the package in the `xpm` central store.
 
 ## Dependencies
-The library dependends very lightly on the __trace__ functionality found in the µOS++ package (https://github.com/micro-os-plus/micro-os-plus-iii), but this can be easily replaced.
+The library depennds very lightly on the __trace__ functionality found in the µOS++ package (https://github.com/micro-os-plus/micro-os-plus-iii), but this can be easily replaced.
 
 ## Tests
 A separate directory `test` is included that contains a short test program which iterates a list of dates and cron strings to test for matches. You can freely add other dates/cron string pairs in the table.
