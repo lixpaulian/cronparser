@@ -30,7 +30,7 @@ To install the package using `xpm` you must make sure that you have already `nod
 ```sh
 cd my-project
 xpm init # Add a package.json if not already present
-xpm install github:lixpaulian/cronparser#v2.2.0 --save-dev --copy
+xpm install github:lixpaulian/cronparser#v2.2.0 --copy
 ```
 
 Note: Without `--copy`, the default is to create a link to a read-only instance of the package in the `xpm` central store.
